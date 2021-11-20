@@ -1,0 +1,19 @@
+#compose file for create stack in use swarm
+version: '3.8'
+services:
+  api-python:
+    hostname: api-python
+    image: api:py-test
+    ports:
+      - 8000:8000
+    networks:
+      - sepehr-net
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == master-a
+
+networks:
+  sepehr-net:
+    external: true
+    name: sepehr
